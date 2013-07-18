@@ -98,7 +98,7 @@ public class NewsDataLoader extends DataLoader {
 	}
 
 	public Topic loadDocumentKeyFilesByTopic(HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, double avg,
-			DateFormat df, Porter porter, DataInputStream reader, String eventId) throws Exception {
+			DateFormat df, Porter porter, BufferedReader reader, String eventId) throws Exception {
 		Topic e = new Topic(eventId);
 
 		// DataInputStream reader = new
@@ -164,7 +164,7 @@ public class NewsDataLoader extends DataLoader {
 			DateFormat df, Porter porter, String file, Timestamp beginDate, Timestamp endDate) throws Exception {
 		Topic e = new Topic(file);
 
-		DataInputStream reader = new DataInputStream(openDataInputStream(constants.DATA_TOPIC_PATH+"/"+file));
+		BufferedReader reader = (openDataInputStream(constants.DATA_TOPIC_PATH+"/"+file));
 		String line = null;
 		int j = 0;
 		while ((line = reader.readLine()) != null && line.trim().length() > 0) {

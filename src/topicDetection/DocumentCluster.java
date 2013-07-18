@@ -1,12 +1,11 @@
 package topicDetection;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.Arrays;
-import java.util.Collections;
 import java.util.HashMap;
 import java.util.HashSet;
 
@@ -124,7 +123,7 @@ public class DocumentCluster {
 
 	public static ArrayList<DocumentCluster> deserializeAll(String inputFile, boolean redDocContent) throws Exception {
 		ArrayList<DocumentCluster> events = new ArrayList<DocumentCluster>();
-		BufferedReader in = new BufferedReader(new FileReader(inputFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(DocumentCluster.class.getClassLoader().getResourceAsStream(inputFile)));
 		do {
 			DocumentCluster dc = new DocumentCluster();
 			dc.deserialize(in, redDocContent);

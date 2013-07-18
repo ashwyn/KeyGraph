@@ -1,12 +1,12 @@
 package topicDetection;
 
 import java.io.BufferedReader;
-import java.io.DataInputStream;
 import java.io.DataOutputStream;
 import java.io.File;
 import java.io.FileOutputStream;
 import java.io.FileReader;
 import java.io.IOException;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -255,16 +255,16 @@ public class GraphAnalyze {
 			Runtime.getRuntime().exec("cp edge.txt FastCommunity_GPL_v1.0.3/edge.pairs");
 			Runtime.getRuntime().exec("rm -f edge-fc_hassan.info edge-fc_" + label + ".joins", null, new File("FastCommunity_GPL_v1.0.3/"));
 			Process run = Runtime.getRuntime().exec("FastCommunityMH -f edge.pairs -l " + label, null, new File("FastCommunity_GPL_v1.0.3/"));
-			DataInputStream tmp = new DataInputStream(run.getInputStream());
+			BufferedReader tmp = new BufferedReader(new InputStreamReader(run.getInputStream()));
 			while (tmp.readLine() != null)
 				;
 
 			HashMap<String, Node> nodeIds = new HashMap<String, Node>();
 			for (Node n : nodes.values())
 				nodeIds.put(n.id, n);
-			File f = new File("FastCommunity_GPL_v1.0.3/edge-fc_" + label + ".joins");
+			File f = StreamUtil.stream2file(this.getClass().getResourceAsStream("FastCommunity_GPL_v1.0.3/edge-fc_" + label + ".joins"));
 			// System.out.println(nodes.size()+"::::"+f.exists()+"::::"+f.getAbsolutePath());
-			BufferedReader in = new BufferedReader(new FileReader("FastCommunity_GPL_v1.0.3/edge-fc_" + label + ".joins"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("FastCommunity_GPL_v1.0.3/edge-fc_" + label + ".joins")));
 			String line = null;
 			HashMap<String, Node> tmpNodes = new HashMap<String, Node>();
 			Node n1 = null, n2 = null;

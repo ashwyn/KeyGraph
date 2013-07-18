@@ -2,6 +2,7 @@ package dataset.twitter;
 
 import java.io.BufferedReader;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.sql.Timestamp;
 import java.util.ArrayList;
 import java.util.HashMap;
@@ -30,7 +31,7 @@ public class TwitterDataLoader extends DataLoader {
 	public void fetchTweets4website(String datasetFile, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter,
 			boolean removeDuplicates) throws Exception {
 		String line = null;
-		BufferedReader in = new BufferedReader(new FileReader(datasetFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(datasetFile)));
 		int i = 0;
 		StringDuplicate sd = new StringDuplicate();
 
@@ -61,7 +62,7 @@ public class TwitterDataLoader extends DataLoader {
 	public void fetchTweets(String datasetFile, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter)
 			throws Exception {
 		String line = null;
-		BufferedReader in = new BufferedReader(new FileReader(datasetFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(datasetFile)));
 		int i = 0;
 		while ((line = in.readLine()) != null)
 			try {
@@ -103,7 +104,7 @@ public class TwitterDataLoader extends DataLoader {
 	public void fetchTweets(String datasetFile, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter,
 			Timestamp start, Timestamp end) throws Exception {
 		String line = null;
-		BufferedReader in = new BufferedReader(new FileReader(datasetFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(datasetFile)));
 		int i = 0;
 		while ((line = in.readLine()) != null)
 			try {
@@ -148,7 +149,7 @@ public class TwitterDataLoader extends DataLoader {
 	public void fetchTweetsByQuery(String datasetFile, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter,
 			String query, Timestamp startDate, Timestamp endDate) throws Exception {
 		String line = null;
-		BufferedReader in = new BufferedReader(new FileReader(datasetFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(datasetFile)));
 		int i = 0;
 		while ((line = in.readLine()) != null)
 			try {
@@ -185,7 +186,7 @@ public class TwitterDataLoader extends DataLoader {
 	public void fetchTweetsByUsers(String datasetFile, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter,
 			HashSet<String> users, Timestamp startDate, Timestamp endDate) throws Exception {
 		String line = null;
-		BufferedReader in = new BufferedReader(new FileReader(datasetFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(datasetFile)));
 		int i = 0;
 		while ((line = in.readLine()) != null) {
 			i++;
@@ -219,7 +220,7 @@ public class TwitterDataLoader extends DataLoader {
 	public HashSet<String> getUsers(String datasetFile, String query, Timestamp startDate, Timestamp endDate) throws Exception {
 		HashSet<String> users = new HashSet<String>();
 		String line = null;
-		BufferedReader in = new BufferedReader(new FileReader(datasetFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(datasetFile)));
 		int i = 0;
 		while ((line = in.readLine()) != null) {
 			i++;

@@ -8,7 +8,7 @@ import java.util.HashSet;
 public class Main {
 
 	public static void main(String[] args) throws Exception {
-		Constants constants = new Constants(args[2]);
+		Constants constants = new Constants("TwitterConstants.txt");
 		PrintStream out = new PrintStream(args[1]);
 
 		double toMins = 1000 * 60;

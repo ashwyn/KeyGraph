@@ -2,14 +2,15 @@ package topicDetection;
 
 import java.io.BufferedReader;
 import java.io.ByteArrayInputStream;
-import java.io.DataInputStream;
 import java.io.File;
-import java.io.FileInputStream;
 import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringTokenizer;
+
+//import StreamUtil;
 
 import dataset.twitter.StringDuplicate;
 
@@ -24,8 +25,8 @@ public class DataLoader {
 		this.constants = constants;
 	}
 
-	public DataInputStream openDataInputStream(String fileName) throws Exception {
-		return new DataInputStream(new FileInputStream(fileName));
+	public BufferedReader openDataInputStream(String fileName) throws Exception {
+		return new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName)));
 	}
 
 	public boolean exists(String f) throws Exception {
@@ -65,7 +66,7 @@ public class DataLoader {
 
 	public void loadDocuments(String inputFileName, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter,
 			boolean removeDuplicates) throws Exception {
-		File inputFile = new File(inputFileName);
+		File inputFile = StreamUtil.stream2file(this.getClass().getResourceAsStream(inputFileName));
 		StringDuplicate sd = new StringDuplicate();
 		if (inputFile.isDirectory()) {
 			int i = 0;
@@ -103,7 +104,7 @@ public class DataLoader {
 					// loadDocumentKeyFile(openDataInputStream(file), stopwords,
 					// porter, d, constants.KEYWORDS_1_WEIGHT);
 					// if (file.endsWith(".txt"))
-					loadDocumentTextFile(new DataInputStream(new ByteArrayInputStream(tokens[1].getBytes("UTF-8"))), stopwords, porter, d,
+					loadDocumentTextFile(new BufferedReader(new InputStreamReader(new ByteArrayInputStream(tokens[1].getBytes("UTF-8")))), stopwords, porter, d,
 							constants.TEXT_WEIGHT, removeDuplicates, sd);
 
 					docs.put(id, d);
@@ -206,7 +207,7 @@ public class DataLoader {
 
 	}
 
-	public void loadDocumentKeyFile(DataInputStream in, HashSet<String> stopwords, Porter porter, Document d, double BoostRate) {
+	public void loadDocumentKeyFile(BufferedReader in, HashSet<String> stopwords, Porter porter, Document d, double BoostRate) {
 		// if (Constants.BREAK_NP)
 		// fetchDocumentNEAndNPFileWithBreaking(f, stopwords, porter, d);
 		// System.out.println("injaaaaaaaaaaaaaaaaa:"+d.id);
@@ -271,7 +272,7 @@ public class DataLoader {
 		return base.trim();
 	}
 
-	public void loadDocumentTextFile(DataInputStream in, HashSet<String> stopwords, Porter porter, Document d, double BoostRate, boolean removeDuplicates,
+	public void loadDocumentTextFile(BufferedReader in, HashSet<String> stopwords, Porter porter, Document d, double BoostRate, boolean removeDuplicates,
 			StringDuplicate sd) {
 		try {
 			String content = "";

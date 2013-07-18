@@ -7,10 +7,12 @@ import java.sql.*;
 //import org.apache.commons.lang.*;
 //import com.twitter.Extractor;
 
+import topicDetection.Utils;
+
 public class Preprocessing {
  	
 	public static void main(String[] args) throws IOException, SQLException {
-     BufferedReader firstReader = new BufferedReader(new FileReader("/fs/clip-sm3/temp/etsy_posts.txt"));
+     BufferedReader firstReader = new BufferedReader(new InputStreamReader(Utils.class.getClassLoader().getResourceAsStream(("/fs/clip-sm3/temp/etsy_posts.txt"))));
 
      StringDuplicate stringDuplicate=new StringDuplicate();
 	 String line;

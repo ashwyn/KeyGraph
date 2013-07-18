@@ -2,11 +2,11 @@ package dataset.twitter;
 
 import java.io.BufferedReader;
 import java.io.BufferedWriter;
-import java.io.DataInputStream;
 import java.io.File;
 import java.io.FileInputStream;
 import java.io.FileReader;
 import java.io.FileWriter;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -36,7 +36,7 @@ public class MainTwitter {
 		// String in="RT @localnatives: A friend of ours found this inside an elliot smith book in a bookstore in Brooklyn  http://plixi.com/p/50287064";
 		// System.out.println(in.replaceAll("[hH][tT][tT][pP][s]?:[\\\\/][\\\\/][^ ]*\\b", " "));
 		// System.exit(0);
-		constants = new Constants(new DataInputStream(new FileInputStream("conf/TwitterConstants.txt")));
+		constants = new Constants(new BufferedReader(new InputStreamReader(new FileInputStream("conf/TwitterConstants.txt"))));
 		// createDataset("/fs/clip-clip-proj/SMSite2010/BB(r)_v2/Data1/Ego_dataset_1/Data/TweetsUserContent.txt",
 		// //
 		// createDataset("/fs/clip-clip-proj/SMSite2010/BB(r)_v2/Data1/Ego_dataset_2/Data/protocol2_backgroundTweets.txt",
@@ -74,7 +74,7 @@ public class MainTwitter {
 
 	public static void createDataset(String inputFile, String query, Timestamp startDate, Timestamp endDate, String outputFile) throws Exception {
 		String line = null;
-		BufferedReader in = new BufferedReader(new FileReader(inputFile));
+		BufferedReader in = new BufferedReader(new InputStreamReader(Utils.class.getClassLoader().getResourceAsStream(inputFile)));
 		BufferedWriter out = new BufferedWriter(new FileWriter(outputFile));
 		int i = 0;
 		while ((line = in.readLine()) != null)

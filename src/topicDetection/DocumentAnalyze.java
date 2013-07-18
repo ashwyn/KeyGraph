@@ -1,7 +1,7 @@
 package topicDetection;
 
 import java.io.BufferedReader;
-import java.io.FileReader;
+import java.io.InputStreamReader;
 import java.io.PrintStream;
 import java.sql.Timestamp;
 import java.util.ArrayList;
@@ -21,7 +21,7 @@ public class DocumentAnalyze {
 
 			HashMap<Integer, DocumentCluster> clusters = new HashMap<Integer, DocumentCluster>();
 
-			BufferedReader in = new BufferedReader(new FileReader("results-" + model + ".txt"));
+			BufferedReader in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("results-" + model + ".txt")));
 			in.readLine();
 			String line = null;
 			while ((line = in.readLine()) != null) {
@@ -45,7 +45,7 @@ public class DocumentAnalyze {
 			System.out.println();
 			if (model.startsWith("mallet")) {
 
-				in = new BufferedReader(new FileReader("results-" + model + ".topickeys.txt"));
+				in = new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("results-" + model + ".topickeys.txt")));
 				// in.readLine();
 				line = null;
 				while ((line = in.readLine()) != null) {

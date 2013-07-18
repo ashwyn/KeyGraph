@@ -1,21 +1,21 @@
 package topicDetection;
 
-import java.io.DataInputStream;
-import java.io.FileInputStream;
+import java.io.BufferedReader;
+import java.io.InputStreamReader;
 import java.util.HashMap;
 import java.util.StringTokenizer;
 
 public class Constants {
 
 	public Constants()throws Exception{
-		load(new DataInputStream(new FileInputStream("TDTConstants.txt")));
+		load(new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream("TDTConstants.txt"))));
 	}
 
 	public Constants(String constantsFile) throws Exception {
-		load(new DataInputStream(new FileInputStream(constantsFile)));
+		load(new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(constantsFile))));
 	}
 
-	public Constants(DataInputStream constantsFile) throws Exception {
+	public Constants(BufferedReader constantsFile) throws Exception {
 		load(constantsFile);
 	}
 
@@ -63,7 +63,7 @@ public class Constants {
 	public String DATA_TEXT_PATH = "./data/text/";
 	public String DATA_DATE_PATH = "/fs/clip-clip-proj/GeoNets/hassan/workspace/dataProcess/data/largeData_date";
 
-	public void load(DataInputStream in) throws Exception {
+	public void load(BufferedReader in) throws Exception {
 		// System.out.println(new File(constantsFile).getAbsolutePath());
 		// DataInputStream in=new DataInputStream(new
 		// FileInputStream(constantsFile));
