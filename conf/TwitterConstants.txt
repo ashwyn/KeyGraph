@@ -1,0 +1,40 @@
+TEXT_WEIGHT = 1;
+KEYWORDS_WEIGHT = 1;
+
+HARD_CLUSTERING = true;
+REMOVE_DUPLICATES= true;;
+
+NODE_DF_MIN = 4;
+NODE_DF_MAX = .3;
+
+EDGE_CORRELATION_MIN = .051;
+EDGE_DF_MIN = 3;
+
+DOC_KEYWORDS_SIZE_MIN = 3;
+DOC_SIM2KEYGRAPH_MIN = .23;
+
+CLUSTER_NODE_SIZE_MAX = 500;
+CLUSTER_NODE_SIZE_MIN = 3;
+CLUSTER_INTERSECT_MIN = .3;
+
+TOPIC_MIN_SIZE = 5;
+
+// IGNORE ==============================
+EDGE_CP_MIN_TO_DUPLICATE = 1.;//not used
+CENTROID_KEYWORD_DF_MIN = 3;// not used
+SIMILARITY_KEYWORD_DF_MIN = 5;// not used
+DOC_CHAR_SIZE_MAX = 2000; // not used
+DOC_SIM2CENTROID_MIN = 0.00;// not used
+CLUSTER_VAR_MAX = 1.99;	// not used
+TOPIC_MAX = 1000;
+KEYWORDS_2_WEIGHT = 1;
+KEYWORDS_1_ENABLE = false;
+KEYWORDS_2_ENABLE = false;
+TEXT_ENABLE = true;
+CLUSTERING_ALG= betweenness;
+DATA_TOPIC_PATH = /fs/clip-clip-proj/GeoNets/hassan/source_codes/eventDetectionTDT/data/topic_new/;
+#DATA_TOPIC_PATH = /fs/clip-clip-proj/GeoNets/EntityTDT/hassan/output/allfiletopics/;
+DATA_KEYWORDS_1_PATH = /fs/clip-clip-proj/GeoNets/hassan/workspace/Spinn3rdataProcess/data/largeData_key_NE/;
+DATA_KEYWORDS_2_PATH = /fs/clip-clip-proj/GeoNets/hassan/workspace/Spinn3rdataProcess/data/largeData_key_NP/;
+DATA_TEXT_PATH = /fs/clip-clip-proj/GeoNets/EntityTDT/hassan/output/text/;
+DATA_DATE_PATH = /fs/clip-clip-proj/GeoNets/hassan/workspace/Spinn3rdataProcess/data/largeData_date;
