@@ -5,14 +5,14 @@ import java.io.ByteArrayInputStream;
 import java.io.File;
 import java.io.FileReader;
 import java.io.InputStreamReader;
+import java.net.URL;
 import java.util.ArrayList;
 import java.util.HashMap;
 import java.util.HashSet;
 import java.util.StringTokenizer;
 
-//import StreamUtil;
-
 import dataset.twitter.StringDuplicate;
+//import StreamUtil;
 
 public class DataLoader {
 
@@ -66,7 +66,9 @@ public class DataLoader {
 
 	public void loadDocuments(String inputFileName, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter,
 			boolean removeDuplicates) throws Exception {
-		File inputFile = StreamUtil.stream2file(this.getClass().getResourceAsStream(inputFileName));
+		URL dir_url = ClassLoader.getSystemResource(inputFileName);
+		File inputFile = new File(dir_url.toURI());
+		//File inputFile = StreamUtil.stream2file(this.getClass().getResourceAsStream(inputFileName), true);
 		StringDuplicate sd = new StringDuplicate();
 		if (inputFile.isDirectory()) {
 			int i = 0;
