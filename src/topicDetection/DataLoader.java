@@ -27,7 +27,6 @@ public class DataLoader {
 
 	public BufferedReader openDataInputStream(String fileName) throws Exception {
 		return new BufferedReader(new FileReader(fileName));
-		//return new BufferedReader(new InputStreamReader(this.getClass().getResourceAsStream(fileName)));
 	}
 
 	public boolean exists(String f) throws Exception {
@@ -67,10 +66,7 @@ public class DataLoader {
 
 	public void loadDocuments(String inputFileName, HashMap<String, Document> docs, HashSet<String> stopwords, HashMap<String, Double> DF, Porter porter,
 			boolean removeDuplicates) throws Exception {
-		//URL dir_url = ClassLoader.getSystemResource(inputFileName);
-		//File inputFile = new File(dir_url.toURI());
 		File inputFile = new File(inputFileName);
-		//File inputFile = StreamUtil.stream2file(this.getClass().getResourceAsStream(inputFileName), true);
 		StringDuplicate sd = new StringDuplicate();
 		if (inputFile.isDirectory()) {
 			int i = 0;
